@@ -8,7 +8,7 @@ app.use(cors());
 
 const BASE_URL = "/api";
 
-app.use(`${BASE_URL}/diagnoses`, diagnoseRouter);
+app.use(`${BASE_URL}/diagnosis`, diagnoseRouter);
 app.use(`${BASE_URL}/patients`, patientRouter);
 const PORT = 3001;
 app.listen(PORT, () => {

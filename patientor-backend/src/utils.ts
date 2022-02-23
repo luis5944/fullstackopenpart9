@@ -1,4 +1,6 @@
-import { Gender, NewPatient } from "./types";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+import { Entry, Gender, NewPatient } from "./types";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const toNewPatientEntry = (object: any): NewPatient => {
@@ -8,8 +10,22 @@ const toNewPatientEntry = (object: any): NewPatient => {
     ssn: parseName(object.ssn, "ssn"),
     gender: parseGender(object.gender),
     occupation: parseName(object.occupation, "occupation"),
+    entries: parseEntries(object.entries),
   };
   return newPatient;
+};
+
+export const parseEntries = (entries: any): Entry[] => {
+  if (!entries) {
+    throw new Error(`Incorrect or missing entries: ${entries}`);
+  }
+  return entries;
+};
+export const parseEntry = (entry: Entry): Entry => {
+  if (!entry) {
+    throw new Error(`Incorrect entry: ${entry}`);
+  }
+  return entry;
 };
 
 const parseName = (name: unknown, type: string): string => {
